@@ -1,9 +1,11 @@
 from flask import Flask,redirect,url_for,render_template,request,session,flash,get_flashed_messages
-from datetime import timedelta
+from sed import sed
 
+from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.register_blueprint(sed,url_prefix="/admin")#if there is a /admin/<rest of shiet> then it will use the blueprint paht instead
 app.secret_key = "hello"
 app.permanent_session_lifetime = timedelta(days=5)
 app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///users.sqlite3'
